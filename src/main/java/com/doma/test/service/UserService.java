@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -27,12 +28,40 @@ public class UserService {
         }
     }
 
+    public String modify(String id, String pwd, String newId, String newPwd) {
+        User user = userRepository.getUserById(id);
+        if (user.getPwd() == pwd) {
+            user.setId(newId);
+            user.setPwd(newPwd);
+            return "Change applied";
+        } else {
+            return "Wrong ID/Password";
+        }
+    }
+
+    public void delete(String id) {
+        User user = getUserById(id);
+        userRepository.delete(user);
+    }
+
     public List<User> getUsers() {
         List<User> userList = userRepository.findAll();
         return userList;
     }
 
     public User getUserById(String id) {
-        return userRepository.getById(id);
+        return userRepository.getUserById(id);
+    }
+
+    @Transactional
+    public String deleteUserById(String id) {
+        if (!userRepository.existsById(id)) {
+            return "없는 아이디입니다.";
+        }
+        int result = userRepository.deleteUserById(id);
+        if (result == 1) {
+            return "삭제 되었습니다.";
+        }
+        return "Failed to delete";
     }
 }
