@@ -19,5 +19,10 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     @Modifying
     @Query("UPDATE User u SET u.id=:newId, u.pwd=:newPwd Where u.id=:id")
-    int modify(@Param("id") String id, @Param("newID") String newId, @Param("newPWD") String newPwd);
+    int modify(@Param("id") String id, @Param("newId") String newId, @Param("newPwd") String newPwd);
+
+    //    @Modifying
+//    @Query("DELETE FROM User u WHERE u.id=:id")
+//    @Query("INSERT INTO ")
+//    int modify(@Param("id") String id, @Param("newId") String newId, @Param("newPwd") String newPwd);
 }

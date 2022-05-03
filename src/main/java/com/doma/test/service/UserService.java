@@ -28,14 +28,25 @@ public class UserService {
         }
     }
 
-    public String modify(String id, String pwd, String newId, String newPwd) {
+    @Transactional
+    public String modify(String id, String pwd, String newId, String newPwd, String newName) {
         User user = userRepository.getUserById(id);
-        if (user.getPwd() == pwd) {
-            user.setId(newId);
-            user.setPwd(newPwd);
+        if (user.getPwd().equals(pwd)) {
+            userRepository.delete(user);
+            User newUser = User.builder().id(newId).pwd(newPwd).name(newName).build();
+            userRepository.save(newUser);
             return "Change applied";
         } else {
             return "Wrong ID/Password";
+        }
+    }
+
+    public String login(String id, String pwd) {
+        User user = getUserById(id);
+        if (user.getPwd().equals(pwd)) {
+            return "Welcome";
+        } else {
+            return "Access Denied";
         }
     }
 

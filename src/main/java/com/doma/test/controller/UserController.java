@@ -33,18 +33,14 @@ public class UserController {
 
     // TODO 로그인 ID, PASSWORD 확인
     @GetMapping("/v1/user/login")
-    public String login(@RequestParam("id") String id, @RequestParam("password") String pwd) {
-        if (userService.getUserById(id).getPwd() == pwd) {
-            return "Welcome";
-        } else {
-            return "Access Denied";
-        }
+    public String login(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
+        return userService.login(id, pwd);
     }
 
     // TODO 회원수정
-    @PostMapping("/modify")
-    public String modify(@RequestParam("id") String id, @RequestParam("password") String pwd, @RequestParam("newId") String newId, @RequestParam("newPassword") String newPwd) {
-        return userService.modify(id, pwd, newId, newPwd);
+    @PostMapping("/v1/user/modify")
+    public String modify(@RequestParam("id") String id, @RequestParam("pwd") String pwd, @RequestParam("newId") String newId, @RequestParam("newPwd") String newPwd, @RequestParam("newName") String newName) {
+        return userService.modify(id, pwd, newId, newPwd, newName);
     }
 
     // TODO 회원탈퇴
