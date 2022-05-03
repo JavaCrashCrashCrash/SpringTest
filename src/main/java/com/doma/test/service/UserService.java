@@ -32,9 +32,7 @@ public class UserService {
     public String modify(String id, String pwd, String newId, String newPwd, String newName) {
         User user = userRepository.getUserById(id);
         if (user.getPwd().equals(pwd)) {
-            userRepository.delete(user);
-            User newUser = User.builder().id(newId).pwd(newPwd).name(newName).build();
-            userRepository.save(newUser);
+            userRepository.modify(id, newId, newPwd, newName);
             return "Change applied";
         } else {
             return "Wrong ID/Password";

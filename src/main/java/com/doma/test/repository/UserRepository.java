@@ -13,16 +13,11 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query("SELECT u FROM User u WHERE u.id=:id")
     User getUserById(@Param("id") String id);
 
-    @Modifying
     @Query("DELETE FROM User u WHERE u.id=:id")
     int deleteUserById(@Param("id") String id);
 
     @Modifying
-    @Query("UPDATE User u SET u.id=:newId, u.pwd=:newPwd Where u.id=:id")
-    int modify(@Param("id") String id, @Param("newId") String newId, @Param("newPwd") String newPwd);
+    @Query("UPDATE User u SET u.id=:newId, u.pwd=:newPwd, u.name=:newName Where u.id=:id")
+    int modify(@Param("id") String id, @Param("newId") String newId, @Param("newPwd") String newPwd, @Param("newName") String newName);
 
-    //    @Modifying
-//    @Query("DELETE FROM User u WHERE u.id=:id")
-//    @Query("INSERT INTO ")
-//    int modify(@Param("id") String id, @Param("newId") String newId, @Param("newPwd") String newPwd);
 }
