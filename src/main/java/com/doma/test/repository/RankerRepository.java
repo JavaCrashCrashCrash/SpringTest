@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface RankerRepository extends JpaRepository<Ranker, String> {
 
     @Query("SELECT r FROM Ranker r WHERE r.id=:id")
@@ -15,6 +17,6 @@ public interface RankerRepository extends JpaRepository<Ranker, String> {
     int deleteRankerById(@Param("id") String id);
 
     @Modifying
-    @Query("UPDATE Ranker r SET r.id=:newId, r.record=:newRecord")
+    @Query("UPDATE Ranker r SET r.id=:newId, r.record=:newRecord Where r.id=:id")
     int modify(@Param("id") String id, @Param("newId") String newId, @Param("newRecord") String newRecord);
 }
