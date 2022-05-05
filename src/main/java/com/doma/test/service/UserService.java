@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+
     public boolean signUp(String id, String pwd, String name) {
         if (!userRepository.existsById(id)) {
             System.out.println("======Service======");
