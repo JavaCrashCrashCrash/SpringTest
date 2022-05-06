@@ -20,4 +20,10 @@ public interface RankerRepository extends JpaRepository<Ranker, String> {
     @Query("UPDATE Ranker r SET r.id=:newId, r.record=:newRecord Where r.id=:id")
     int modify(@Param("id") String id, @Param("newId") String newId, @Param("newRecord") String newRecord);
 
+    @Query("SELECT r from Ranker r order by r.record asc")
+    List<Ranker> sortRankers();
+
+    @Query("SELECT r from Ranker r")
+    List<Ranker> getRankers();
+
 }

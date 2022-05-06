@@ -49,12 +49,13 @@ public class RankerService {
     }
 
     public List<Ranker> getRankers() {
-        return rankerRepository.findAll();
+        return rankerRepository.getRankers();
     }
 
     public List<Ranker> sortRankers() {
-        Sort sort = Sort.by(Sort.Direction.ASC, "record");
-        return this.rankerRepository.findAll(sort);
+//        Sort sort = Sort.by(Sort.Direction.ASC, "record");
+//        return this.rankerRepository.findAll(sort);
+        return rankerRepository.sortRankers();
     }
 
     public Ranker getRankerById(String id) {
