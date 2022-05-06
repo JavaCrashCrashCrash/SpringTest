@@ -58,4 +58,9 @@ public class RankerController {
     public Ranker getRankerById(@RequestParam("id") String id) {
         return rankerService.getRankerById(id);
     }
+
+    @GetMapping("/ranker/sort")
+    public List<Ranker> sortRankers() {
+        return rankerService.sortRankers();
+    }
 }

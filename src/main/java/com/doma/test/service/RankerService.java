@@ -5,6 +5,7 @@ import com.doma.test.repository.RankerRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -49,6 +50,11 @@ public class RankerService {
 
     public List<Ranker> getRankers() {
         return rankerRepository.findAll();
+    }
+
+    public List<Ranker> sortRankers() {
+        Sort sort = Sort.by(Sort.Direction.ASC, "record");
+        return this.rankerRepository.findAll(sort);
     }
 
     public Ranker getRankerById(String id) {
