@@ -1,5 +1,6 @@
-$(document).ready(function(){
-    $('#btnSignup').click(function() {
+$(document).ready(function () {
+    $('#btnSignup').click(function () {
+        signUp();
         var inputId = $('#id').val();
         var inputPwd = $('#pwd').val();
         var inputName = $('#name').val();
@@ -8,17 +9,18 @@ $(document).ready(function(){
             pwd : inputPwd,
             name : inputName
         };
-        $.ajax( {
-            type: "POST",
-            url: "http://192.168.0.39:8080/v1/user/signup",
-            data: query,
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
-            success: function (json) {
-                $('#tbody').append(query);
-            }
-        })
+        function signUp() {
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.0.39:8080/v1/user/signup",
+                data: query,
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+
+                success: function () {
+                    $('#tbody').append(query);
+                }
+            });
+        }
     })
-
-
 })
