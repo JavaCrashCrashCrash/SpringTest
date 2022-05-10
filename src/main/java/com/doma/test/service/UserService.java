@@ -17,15 +17,15 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
-    public boolean signUp(String id, String pwd, String name) {
+    public String signUp(String id, String pwd, String name) {
         if (!userRepository.existsById(id)) {
             System.out.println("======Service======");
             System.out.println("id : " + id + " , pwd : " + pwd);
             User user = User.builder().id(id).pwd(pwd).name(name).build();
             userRepository.save(user);
-            return true;
+            return "sign up successful";
         } else {
-            return false;
+            return "sign up failed";
         }
     }
 

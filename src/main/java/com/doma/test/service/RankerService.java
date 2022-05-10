@@ -53,8 +53,6 @@ public class RankerService {
     }
 
     public List<Ranker> sortRankers() {
-//        Sort sort = Sort.by(Sort.Direction.ASC, "record");
-//        return this.rankerRepository.findAll(sort);
         return rankerRepository.sortRankers();
     }
 

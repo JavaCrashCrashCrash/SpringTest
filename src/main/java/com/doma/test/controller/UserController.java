@@ -14,7 +14,6 @@ public class UserController {
     private final UserService userService;
     List<User> userList;
 
-
     @GetMapping("/hello")
     public String hello() {
         String result = "Hello Spring Framework!!";
@@ -23,17 +22,18 @@ public class UserController {
 
     // TODO 아이디 중복 확인
     @PostMapping("/v1/user/signup")
+    @CrossOrigin("*")
     public String signUp(@RequestParam("id") String id, @RequestParam("password") String pwd, @RequestParam("name") String name) {
-        if (userService.signUp(id, pwd, name)) {
-            return "Sign Up Successed.";
-        } else {
-            return "ID already exists.";
-        }
+        return userService.signUp(id, pwd, name);
     }
 
     // TODO 로그인 ID, PASSWORD 확인
+    //CORS
     @GetMapping("/v1/user/login")
+    @CrossOrigin("*")
     public String login(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
+        System.out.println("id : " + id);
+        System.out.println("pwd : " + pwd);
         return userService.login(id, pwd);
     }
 
@@ -51,6 +51,7 @@ public class UserController {
     }
 
     @GetMapping("/v1/user/all")
+    @CrossOrigin("*")
     public List<User> getUsers() {
         userList = userService.getUsers();
         return userList;

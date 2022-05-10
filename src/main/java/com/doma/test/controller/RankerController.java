@@ -51,6 +51,7 @@ public class RankerController {
 
     @GetMapping("/ranker/all")
     public List<Ranker> getRankerList() {
+        System.out.println("Get Ranker!!!!");
         return rankerService.getRankers();
     }
 
