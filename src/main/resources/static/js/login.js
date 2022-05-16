@@ -10,7 +10,7 @@ $(document).ready(function(){
         };
         $.ajax({
             type: "GET",
-            url: "http://192.168.0.39/v1/user/login",
+            url: "http://192.168.0.8/v1/user/login",
             data: query,
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
