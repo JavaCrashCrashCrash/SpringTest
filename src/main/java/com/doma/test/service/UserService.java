@@ -65,13 +65,10 @@ public class UserService {
 
     @Transactional
     public String deleteUserById(String id) {
-        if (!userRepository.existsById(id)) {
-            return "없는 아이디입니다.";
-        }
-        int result = userRepository.deleteUserById(id);
-        if (result == 1) {
+        if (userRepository.deleteUserById(id) == 1) {
             return "삭제 되었습니다.";
+        } else {
+            return "Failed to delete";
         }
-        return "Failed to delete";
     }
 }

@@ -23,7 +23,7 @@ public class UserController {
     // TODO 아이디 중복 확인
     @PostMapping("/v1/user/signup")
     @CrossOrigin("*")
-    public String signUp(@RequestParam("id") String id, @RequestParam("password") String pwd, @RequestParam("name") String name) {
+    public String signUp(@RequestParam("id") String id, @RequestParam("pwd") String pwd, @RequestParam("name") String name) {
         return userService.signUp(id, pwd, name);
     }
 
@@ -62,7 +62,8 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PostMapping("/v1/delete/user")
+    @PostMapping("/v1/user/delete")
+    @CrossOrigin("*")
     public String deleteUserById(@RequestParam("id") String id) {
         return userService.deleteUserById(id);
     }
