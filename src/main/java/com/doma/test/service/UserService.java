@@ -32,7 +32,7 @@ public class UserService {
     @Transactional
     public String modify(String id, String newPwd, String newName) {
         User user = userRepository.getUserById(id);
-            userRepository.modify(id, newPwd, newName);
+            userRepository.modify(user.getId(), newPwd, newName);
             return "Change applied";
     }
 

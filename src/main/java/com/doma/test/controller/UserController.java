@@ -39,6 +39,7 @@ public class UserController {
 
     // TODO 회원수정
     @PostMapping("/v1/user/modify")
+    @CrossOrigin("*")
     public String modify(@RequestParam("id") String id, @RequestParam("newPwd") String newPwd, @RequestParam("newName") String newName) {
         return userService.modify(id, newPwd, newName);
     }

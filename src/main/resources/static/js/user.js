@@ -30,13 +30,27 @@ $(document).ready(function(){
                 var list = json;
                 var listLen = json.length;
                 for (var i = 0; i < listLen; i++) {
-                    var str = "<tr>" +
+                    var str = "<tr class='user_tr'>" +
                         "<td>" + list[i].id + "</td>" +
                         "<td>" + list[i].pwd + "</td>" +
                         "<td>" + list[i].name + "</td>" +
                         "<td><button type='button' class='btn_delete'>삭제</button></td>"
                         "</tr>";
                     $('#tbody').append(str);
+                }
+
+                var modifyElement = document.getElementsByClassName('user_tr');
+                for (var i = 0; i < modifyElement.length; i++) {
+                    modifyElement[i].addEventListener('click', function() {
+                        var findTr = $(this);
+                        var findId = findTr.find("td:eq(0)").text();
+                        var findPWD = findTr.find("td:eq(1)").text();
+                        var findName = findTr.find("td:eq(2)").text();
+                        $('#id').val(findId);
+                        $('#pwd').val(findPWD);
+                        $('#name').val(findName);
+
+                    })
                 }
 
                 var targetElement = document.getElementsByClassName('btn_delete');
@@ -70,6 +84,7 @@ $(document).ready(function(){
             success: function (json) {
                 var str = json;
                 alert(str);
+                getUsers();
             }
         })
     })
