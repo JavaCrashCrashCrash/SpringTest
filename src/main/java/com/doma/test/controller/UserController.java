@@ -39,8 +39,8 @@ public class UserController {
 
     // TODO 회원수정
     @PostMapping("/v1/user/modify")
-    public String modify(@RequestParam("id") String id, @RequestParam("pwd") String pwd, @RequestParam("newId") String newId, @RequestParam("newPwd") String newPwd, @RequestParam("newName") String newName) {
-        return userService.modify(id, pwd, newId, newPwd, newName);
+    public String modify(@RequestParam("id") String id, @RequestParam("newPwd") String newPwd, @RequestParam("newName") String newName) {
+        return userService.modify(id, newPwd, newName);
     }
 
     // TODO 회원탈퇴
