@@ -65,6 +65,7 @@ public class UserController {
     @PostMapping("/v1/user/delete")
     @CrossOrigin("*")
     public String deleteUserById(@RequestParam("id") String id) {
+        System.out.println("delete User By Id!!! : " + id);
         return userService.deleteUserById(id);
     }
 }
