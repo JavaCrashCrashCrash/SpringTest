@@ -30,14 +30,10 @@ public class UserService {
     }
 
     @Transactional
-    public String modify(String id, String pwd, String newId, String newPwd, String newName) {
+    public String modify(String id, String newPwd, String newName) {
         User user = userRepository.getUserById(id);
-        if (user.getPwd().equals(pwd)) {
-            userRepository.modify(id, newId, newPwd, newName);
+            userRepository.modify(user.getId(), newPwd, newName);
             return "Change applied";
-        } else {
-            return "Wrong ID/Password";
-        }
     }
 
     public String login(String id, String pwd) {
