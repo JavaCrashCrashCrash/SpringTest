@@ -49,7 +49,6 @@ $(document).ready(function(){
                         $('#id').val(findId);
                         $('#pwd').val(findPWD);
                         $('#name').val(findName);
-
                     })
                 }
 
@@ -59,7 +58,6 @@ $(document).ready(function(){
                         var findTr = $(this).parent().parent();
                         var findId = findTr.find("td:eq(0)").text();
                         deleteUser(findId);
-
                     })
                 }
             }

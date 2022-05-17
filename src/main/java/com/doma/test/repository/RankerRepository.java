@@ -13,12 +13,13 @@ public interface RankerRepository extends JpaRepository<Ranker, String> {
     @Query("SELECT r FROM Ranker r WHERE r.id=:id")
     Ranker getRankerById(@Param("id") String id);
 
+    @Modifying
     @Query("DELETE FROM Ranker r WHERE r.id=:id")
     int deleteRankerById(@Param("id") String id);
 
     @Modifying
-    @Query("UPDATE Ranker r SET r.id=:newId, r.record=:newRecord Where r.id=:id")
-    int modify(@Param("id") String id, @Param("newId") String newId, @Param("newRecord") String newRecord);
+    @Query("UPDATE Ranker r SET r.record=:newRecord Where r.id=:id")
+    int modify(@Param("id") String id, @Param("newRecord") String newRecord);
 
     @Query("SELECT r from Ranker r order by r.record asc")
     List<Ranker> sortRankers();

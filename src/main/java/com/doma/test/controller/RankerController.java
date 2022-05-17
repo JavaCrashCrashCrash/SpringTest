@@ -3,10 +3,7 @@ package com.doma.test.controller;
 import com.doma.test.entity.Ranker;
 import com.doma.test.service.RankerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +20,7 @@ public class RankerController {
     }
 
     @PostMapping("/ranker/insert")
+    @CrossOrigin("*")
     public String insert(@RequestParam("id") String id, @RequestParam("record") String record) {
         if (rankerService.insert(id, record)) {
             return id + " registered";
@@ -32,8 +30,9 @@ public class RankerController {
     }
 
     @PostMapping("/ranker/modify")
-    public String modify(@RequestParam("id") String id, @RequestParam("newId") String newId, @RequestParam("newRecord") String newRecord) {
-        if (rankerService.modify(id, newId, newRecord)) {
+    @CrossOrigin("*")
+    public String modify(@RequestParam("id") String id, @RequestParam("newRecord") String newRecord) {
+        if (rankerService.modify(id, newRecord)) {
             return "Successfully changed";
         } else {
             return "Wrong approach";
@@ -41,6 +40,7 @@ public class RankerController {
     }
 
     @PostMapping("/ranker/delete")
+    @CrossOrigin("*")
     public String deleteRankerById(@RequestParam("id") String id) {
         if (rankerService.deleteRankerById(id)) {
             return "Deleted";
@@ -50,8 +50,8 @@ public class RankerController {
     }
 
     @GetMapping("/ranker/all")
+    @CrossOrigin("*")
     public List<Ranker> getRankerList() {
-        System.out.println("Get Ranker!!!!");
         return rankerService.getRankers();
     }
 
