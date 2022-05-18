@@ -30,7 +30,7 @@ public class RankerService {
 
     @Transactional
     public boolean modify(String id,  String newRecord) {
-        if (rankerRepository.getById(id).getId().equals(id)) {
+        if (!rankerRepository.existsById(id)) {
             rankerRepository.modify(id, newRecord);
             return true;
         } else {
