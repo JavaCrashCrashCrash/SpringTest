@@ -29,9 +29,9 @@ public class RankerService {
     }
 
     @Transactional
-    public boolean modify(String id, String newId, String newRecord) {
-        if (rankerRepository.getById(id).getId().equals(id)) {
-            rankerRepository.modify(id, newId, newRecord);
+    public boolean modify(String id,  String newRecord) {
+        if (!rankerRepository.existsById(id)) {
+            rankerRepository.modify(id, newRecord);
             return true;
         } else {
             return false;
