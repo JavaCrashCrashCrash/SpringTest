@@ -4,7 +4,7 @@ $(document).ready(function() {
     function getRankers() {
         $.ajax( {
             type: "GET",
-            url: "http://192.168.0.39:8080/ranker/all",
+            url: "http://172.31.115.244:8080/ranker/all",
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
             success: function (json) {

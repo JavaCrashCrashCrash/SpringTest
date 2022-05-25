@@ -3,6 +3,8 @@ package com.doma.test.entity;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Ranker {
     @Id
-    private String id;
+    private int rankerId; // ranker_id
+    private String userId; // user_id
     private String record;
 }

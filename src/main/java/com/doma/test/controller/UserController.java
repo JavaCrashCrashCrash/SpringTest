@@ -20,15 +20,12 @@ public class UserController {
         return result;
     }
 
-    // TODO 아이디 중복 확인
     @PostMapping("/v1/user/signup")
     @CrossOrigin("*")
     public String signUp(@RequestParam("id") String id, @RequestParam("pwd") String pwd, @RequestParam("name") String name) {
         return userService.signUp(id, pwd, name);
     }
 
-    // TODO 로그인 ID, PASSWORD 확인
-    //CORS
     @GetMapping("/v1/user/login")
     @CrossOrigin("*")
     public String login(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
@@ -37,14 +34,12 @@ public class UserController {
         return userService.login(id, pwd);
     }
 
-    // TODO 회원수정
     @PostMapping("/v1/user/modify")
     @CrossOrigin("*")
     public String modify(@RequestParam("id") String id, @RequestParam("newPwd") String newPwd, @RequestParam("newName") String newName) {
         return userService.modify(id, newPwd, newName);
     }
 
-    // TODO 회원탈퇴
     @GetMapping("/delete")
     public String delete(@RequestParam("id") String id) {
         userService.delete(id);

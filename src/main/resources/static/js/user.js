@@ -22,7 +22,7 @@ $(document).ready(function(){
     function getUsers() {
         $.ajax({
             type: "GET",
-            url: "http://192.168.0.8:8080/v1/user/all",
+            url: "http://172.31.115.244:8080/v1/user/all",
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
             success: function (json) {

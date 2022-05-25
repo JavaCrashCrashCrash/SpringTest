@@ -21,9 +21,9 @@ public class RankerController {
 
     @PostMapping("/ranker/insert")
     @CrossOrigin("*")
-    public String insert(@RequestParam("id") String id, @RequestParam("record") String record) {
-        if (rankerService.insert(id, record)) {
-            return id + " registered";
+    public String insert(@RequestParam("userId") String userId, @RequestParam("record") String record) {
+        if (rankerService.insert(userId, record)) {
+            return userId + " registered";
         } else {
             return "ID already exists";
         }
@@ -31,8 +31,9 @@ public class RankerController {
 
     @PostMapping("/ranker/modify")
     @CrossOrigin("*")
-    public String modify(@RequestParam("id") String id, @RequestParam("newRecord") String newRecord) {
-        if (rankerService.modify(id, newRecord)) {
+    // TODO
+    public String modify(@RequestParam("rankerId") int rankerId, @RequestParam("newRecord") String newRecord) {
+        if (rankerService.modify(rankerId, newRecord)) {
             return "Successfully changed";
         } else {
             return "Wrong approach";
@@ -41,8 +42,9 @@ public class RankerController {
 
     @PostMapping("/ranker/delete")
     @CrossOrigin("*")
-    public String deleteRankerById(@RequestParam("id") String id) {
-        if (rankerService.deleteRankerById(id)) {
+    // TODO
+    public String deleteRankerById(@RequestParam("rankerId") int rankerId) {
+        if (rankerService.deleteRanker(rankerId)) {
             return "Deleted";
         } else {
             return "Wrong approach";
@@ -56,11 +58,12 @@ public class RankerController {
     }
 
     @GetMapping("/ranker/")
-    public Ranker getRankerById(@RequestParam("id") String id) {
-        return rankerService.getRankerById(id);
+    public Ranker getRankerById(@RequestParam("rankerId") int rankerId) {
+        return rankerService.getRankerById(rankerId);
     }
 
     @GetMapping("/ranker/sort")
+    @CrossOrigin("*")
     public List<Ranker> sortRankers() {
         return rankerService.sortRankers();
     }
